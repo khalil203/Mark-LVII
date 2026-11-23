@@ -58,17 +58,15 @@ object Ai {
                 throw Exception("HTTP ${response.code}: ${raw.take(240)}")
             }
             val obj = JSONObject(raw)
-            val content = obj.getJSONArray("choices")
-                .getJSONObject(0)
-                .getJSONObject("message")
-                .get("content")
+            val message = obj.getJSONArray("choices").getJSONObject(0).getJSONObject("message")
+            val content = message.opt("content")
             when (content) {
                 is String -> content
                 is JSONArray -> (0 until content.length()).joinToString("\n") { i ->
                     val part = content.getJSONObject(i)
                     if (part.optString("type") == "text") part.optString("text") else ""
                 }.trim()
-                else -> ""
+                else -> message.optString("reasoning").ifBlank { "No reply returned." }
             }
         }
     }
