@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.MarkLVII" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#38bdf8</item>
+        <item name="colorPrimaryDark">#0a0f1a</item>
+        <item name="colorAccent">#a78bfa</item>
+        <item name="android:windowBackground">#0a0f1a</item>
+    </style>
+</resources>
