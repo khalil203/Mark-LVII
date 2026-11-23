@@ -1,0 +1,14 @@
+{
+  "name": "Mark LVII",
+  "short_name": "Mark LVII",
+  "description": "Personal AI assistant — installable web shell",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0f1a",
+  "theme_color": "#0a0f1a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
