@@ -1,0 +1,29 @@
+name: Sync upstream Mark-LVII
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Fetch upstream
+        run: |
+          git remote add upstream https://github.com/FatihMakes/Mark-LVII.git
+          git fetch upstream --tags
+      - name: Merge upstream main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git merge upstream/main --no-edit || true
+      - name: Push
+        run: git push origin main --tags
